@@ -1,5 +1,8 @@
 # HROS Expo App
 
+<!-- Place this tag where you want the button to render. -->
+<GitHubButton href="https://github.com/buttons/github-buttons" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star buttons/github-buttons on GitHub">Star</GitHubButton>
+
 A React Native + Expo-based mobile application for HROS (Human Resource Operations System), built to display employee information and documents. Features login, dashboard, and profile with Tailwind UI styling via NativeWind.
 
 ---
