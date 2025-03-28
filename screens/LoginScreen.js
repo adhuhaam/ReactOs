@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, Alert } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../services/api';
 
-export default function LoginScreen({ navigation }) {
+const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,39 +21,45 @@ export default function LoginScreen({ navigation }) {
       } else {
         Alert.alert('Login Failed', response.data.message || 'Invalid credentials');
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       Alert.alert('Error', 'Something went wrong');
     }
   };
 
   return (
-    <View className="flex-1 bg-white justify-center px-6">
-      <Text className="text-3xl font-bold text-center text-blue-700 mb-8">HROS Login</Text>
-
-      <Text className="text-gray-700 mb-1">Username</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Employee Login</Text>
       <TextInput
+        placeholder="Username"
+        style={styles.input}
         value={username}
         onChangeText={setUsername}
-        className="border border-gray-300 rounded-lg px-4 py-2 mb-4"
-        placeholder="Enter your username"
       />
-
-      <Text className="text-gray-700 mb-1">Password</Text>
       <TextInput
+        placeholder="Password"
+        style={styles.input}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-        className="border border-gray-300 rounded-lg px-4 py-2 mb-6"
-        placeholder="Enter your password"
       />
-
-      <Pressable
-        onPress={handleLogin}
-        className="bg-blue-600 rounded-lg py-3 items-center"
-      >
-        <Text className="text-white font-semibold text-lg">Login</Text>
-      </Pressable>
+      <Button title="Login" onPress={handleLogin} color="#006bad" />
     </View>
   );
-}
+};
+
+export default LoginScreen;
+
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: 'center', padding: 20 },
+  title: { fontSize: 24, marginBottom: 20, textAlign: 'center' },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 10,
+    marginBottom: 15,
+    borderRadius: 5,
+  },
+});
+
+console.log('🟢 LoginScreen rendered');
